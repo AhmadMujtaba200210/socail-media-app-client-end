@@ -1,10 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+// Redux, is a store to store the state of the whole application or any specific component if needed.
+// This is a global state container which helps us to maintain the state of whole app
+// instead of passing states to each component every time.
+// So in result, if a logged in tab is closed, its state is maintained, hence the user 
+// user does not need to login every time 
+import { createSlice } from "@reduxjs/toolkit";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const initialState={
+  mode:"light",
+  user:null,
+  token:null,
+  posts:[],
+}
+
+
+export const authSlice=createSlice({
+  name: "auth",
+  initialState,
+  reducers:{
+    setMode:(state)=>{
+      state.mode=state.mode==="light" ? "dark" : "light";
+    },
+    setLogin:(state,action)=>{
+      state.user=action.payload.user;
+      state.token=action.payload.token;
+    },
+    setLogout:(state)=>{
+      state.user=null;
+      state.token=null;
+    }
+  }
+})
