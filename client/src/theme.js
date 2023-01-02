@@ -30,12 +30,12 @@ export const colorTokens = {
     },
 };
 
-// mui theme settings
+// this is going to setup mui theme settings
 export const themeSettings = (mode) => {
     return {
         palette: {
             mode: mode,
-            ...(mode === "dark"
+            ...(mode === "dark" // if it is dark mode we are going to setup these settings...
                 ? {
                     // palette values for dark mode
                     primary: {
@@ -55,7 +55,8 @@ export const themeSettings = (mode) => {
                         alt: colorTokens.grey[800],
                     },
                 }
-                : {
+                : { // if it is light mode we are going to setup these settings...
+                    
                     // palette values for light mode
                     primary: {
                         dark: colorTokens.primary[700],
