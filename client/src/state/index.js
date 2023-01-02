@@ -12,7 +12,7 @@ const initialState = {
     posts: [],
 }
 
-//setting the local state of the browser
+//setting up the setting of local state of the browser
 
 export const authSlice = createSlice({
     name: "auth",
@@ -51,4 +51,5 @@ export const authSlice = createSlice({
 export const { setMode, setLogin, setLogout, setFriends, setPosts, setPost } = authSlice.actions;
 export default authSlice.reducer;
 
-// this is entire state
+// this is entire state setting
+// this is a template store of the project
