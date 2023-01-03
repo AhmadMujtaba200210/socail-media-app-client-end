@@ -8,6 +8,8 @@ import storage from "redux-persist/lib/storage";
 import { PersistGate } from 'redux-persist/integration/react';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+
+
 //setting up the redux state store to store the login user state in local storage as cached memory
 // all of this setting information is taken from the documentation of redux-toolkit and redux-persist
 const persistConfig={key: "root", storage, version: 1};
