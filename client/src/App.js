@@ -15,6 +15,9 @@ function App() {
   // here we setup our theme by using the selected mode and pass it to material ui
   // useMemo: function that returns a memoized value
   const theme=useMemo(()=>createTheme(themeSettings(mode)),[mode]);
+  // using useSelector to grab the current logged in state which is stored in localStorage of browser
+  // we will grab the token from local storage, which will help us to be logged in
+  const isAuth=useSelector((state)=>state.token);
   return (
     <div className="app">
       <BrowserRouter>
@@ -25,7 +28,7 @@ function App() {
         <CssBaseline/>
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/home" element={<HomePage />} />
+          <Route path="/home" element={isAuth?<HomePage />:<Navigate to="/"/>} />
           <Route path="/profile/:userId" element={<ProfilePage />} />
         </Routes>
         </ThemeProvider>
