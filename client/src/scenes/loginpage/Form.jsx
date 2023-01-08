@@ -50,13 +50,65 @@ const initialValuesLogin = {
 const Form = () => {
     const [pageType, setPageType] = useState("login");
     const { palette } = useTheme();
-    const disatch = useDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const isLogin = pageType === "login";  // setting a variable of true or false like boolean
     const isRegister = pageType === "register"; // setting a variable of true or false like
 
-    const handleFormSubmit = async (values, onSubmitProps) => { } // the parameters will come from Formik 
+    const register=async(values,onSubmitProps)=>{
+        // creating the form as object to store data as objects in database including images,
+        // note: we are storing data in object form while taking as string form only because we have to store images as well 
+        const formData = new FormData();
+        for(let value of values){
+            formData.append(value,values[value]);
+        }
+        formData.append("picturePath",values.picture.name);
+
+        const savedUserResponse=await fetch(
+            "http://localhost:3001/auth/register",
+            {
+                method: "POST",
+                body: formData,
+            }
+        );
+
+        const savedUser=await savedUserResponse.json();
+        onSubmitProps.resetForm();
+
+        if(savedUser){
+            setPageType("login");
+        }
+    };
+
+    const login=async(values,onSubmitProps)=>{
+        const loggedInResponse=await fetch(
+            "http://localhost:3001/auth/register",
+            {
+                method: "POST",
+                headers:{"Content-Type": "application/json"},
+                body: JSON.stringify(values),
+            }
+        );
+        const loggedIn=await loggedInResponse.json();
+        onSubmitProps.resetForm();
+
+        // this will maintain the state of the application once we logged in using redux
+        if(loggedIn){
+            dispatch(
+                setLogin({
+                    user: loggedIn.user,
+                    token: loggedIn.token,
+                })
+            );
+            navigate("/home");
+        }
+    }
+
+    const handleFormSubmit = async (values, onSubmitProps) => {
+        if (isLogin) await login(values, onSubmitProps);
+        if (isLogin) await register(values, onSubmitProps);
+     } // the parameters will come from Formik 
     return (
         <Formik
             onSubmit={handleFormSubmit}
@@ -233,7 +285,7 @@ const Form = () => {
                                 }
                             }}
                         >
-
+                            {isLogin? "Don't have an account? Sign up here.":"Already have an account? Login here."}
                         </Typography>
                     </Box>
                 </form>
