@@ -60,7 +60,7 @@ const Form = () => {
         // creating the form as object to store data as objects in database including images,
         // note: we are storing data in object form while taking as string form only because we have to store images as well 
         const formData = new FormData();
-        for(let value of values){
+        for(let value in values){
             formData.append(value,values[value]);
         }
         formData.append("picturePath",values.picture.name);
@@ -75,7 +75,8 @@ const Form = () => {
 
         const savedUser=await savedUserResponse.json();
         onSubmitProps.resetForm();
-
+        
+            console.log(savedUser);
         if(savedUser){
             setPageType("login");
         }
@@ -83,7 +84,7 @@ const Form = () => {
 
     const login=async(values,onSubmitProps)=>{
         const loggedInResponse=await fetch(
-            "http://localhost:3001/auth/register",
+            "http://localhost:3001/auth/login",
             {
                 method: "POST",
                 headers:{"Content-Type": "application/json"},
@@ -107,8 +108,8 @@ const Form = () => {
 
     const handleFormSubmit = async (values, onSubmitProps) => {
         if (isLogin) await login(values, onSubmitProps);
-        if (isLogin) await register(values, onSubmitProps);
-     } // the parameters will come from Formik 
+        if (isRegister) await register(values, onSubmitProps);
+     }; // the parameters will come from Formik 
     return (
         <Formik
             onSubmit={handleFormSubmit}
@@ -239,7 +240,7 @@ const Form = () => {
                                     error={Boolean(touched.email)&&Boolean(errors.email)} // the error will display if it is touched and having any error
                                     helperText={touched.email&& errors.email} // it will display helper message for error if there is any error
                                     sx={{
-                                        gridColumn:"span 2"
+                                        gridColumn:"span 4"
                                     }}
                                 />
                                 
@@ -253,14 +254,14 @@ const Form = () => {
                                     error={Boolean(touched.password)&&Boolean(errors.password)} // the error will display if it is touched and having any error
                                     helperText={touched.password&& errors.password} // it will display helper message for error if there is any error
                                     sx={{
-                                        gridColumn:"span 2"
+                                        gridColumn:"span 4"
                                     }}
                                 />
                     </Box>
                     <Box>
                         <Button
                             fullWidth
-                            type="Submit"
+                            type="submit"
                             sx={{
                                 m:"2rem 0",
                                 p:"1rem",
