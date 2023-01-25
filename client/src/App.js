@@ -16,7 +16,7 @@ function App() {
   // useMemo: function that returns a memoized value
   const theme=useMemo(()=>createTheme(themeSettings(mode)),[mode]);
   // using useSelector to grab the current logged in state which is stored in localStorage of browser
-  // we will grab the token from local storage, which will help us to be logged in
+  // we will grab the tok en from local storage, which will help us to be logged in
   const isAuth=useSelector((state)=>state.token);
   return (
     <div className="app">
