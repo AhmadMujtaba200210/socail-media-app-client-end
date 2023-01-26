@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import UserWidget from "../widgets/UserWidget";
 import Navbar from "../navabar";
 import MyPostWidget from "../widgets/MyPostWidget";
+import PostsWidget from "../widgets/PostsWidget";
 const HomePage=()=>{
     const isNonMobileScreen=useMediaQuery("(min-width:1000px)");
     const {_id,picturePath}=useSelector((state)=>state.user);
@@ -18,6 +19,7 @@ const HomePage=()=>{
                 <Box flexBasis={isNonMobileScreen ? "42%" : undefined} mt={isNonMobileScreen? undefined: "2rem"}>
                     {/* <UserWidget userId={_id} picturePath={picturePath}/> */}
                     <MyPostWidget picturePath={picturePath} />
+                    <PostsWidget userId={_id}></PostsWidget>
                 </Box>
 
                 {/* friend list only show on desktop screen */}
