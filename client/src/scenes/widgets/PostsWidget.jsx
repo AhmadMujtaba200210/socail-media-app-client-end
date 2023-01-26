@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import {setPosts} from "../../state"
 import PostWidget from "./PostWidget";
-
+// this widget is used to map all the posts that a user posted along the post of his friends
 const PostsWidget=({userId,isProfile=false})=>{
     const dispatch=useDispatch(); // use redux
     const posts=useSelector((state)=>state.posts) // grab stored list of posts
