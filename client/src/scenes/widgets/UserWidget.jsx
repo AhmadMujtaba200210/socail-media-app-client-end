@@ -2,7 +2,7 @@ import {
     ManageAccountsOutlined,
     EditOutlined,
     LocationOnOutlined,
-    WorkoutOutlineOutlined,
+    WorkOutlineOutlined,
 } from "@mui/icons-material";
 import { Box, Typography, Divider, useTheme } from "@mui/material";
 import UserImage from "../../components/UserImage";
@@ -86,7 +86,7 @@ const UserWidget = ({ userId, picturePath }) => {
                         <Typography color={medium}>{location}</Typography>
                     </Box>
                     <Box display="flex" alignItems="center" gap="1rem">
-                        <LocationOnOutlined fontSize="large" sx={{ color: main }} />
+                        <WorkOutlineOutlined fontSize="large" sx={{ color: main }} />
                         <Typography color={medium}>{occupation}</Typography>
                     </Box>
                 </Box>
