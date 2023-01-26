@@ -3,7 +3,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSelector } from "react-redux";
 import UserWidget from "../widgets/UserWidget";
 import Navbar from "../navabar";
-import MyPostWidget from "";
+import MyPostWidget from "../widgets/MyPostWidget";
 const HomePage=()=>{
     const isNonMobileScreen=useMediaQuery("(min-width:1000px)");
     const {_id,picturePath}=useSelector((state)=>state.user);
