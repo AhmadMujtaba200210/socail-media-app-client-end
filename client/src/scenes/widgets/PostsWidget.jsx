@@ -15,7 +15,7 @@ const PostsWidget=({userId,isProfile=false})=>{
     //Api calls
     const getPosts=async()=>{
         const response=await fetch("http://localhost:3001/posts",{
-        method: 'GET',
+        method: "GET",
         headers:{Authorization: `Bearer ${token}`}
         });
         const data= await response.json();
@@ -24,7 +24,7 @@ const PostsWidget=({userId,isProfile=false})=>{
 
     const getUserPosts=async()=>{
         const response=await fetch(`http://localhost:3001/posts/${userId}/posts`,{
-        method: 'GET',
+        method: "GET",
         headers:{Authorization: `Bearer ${token}`}
         });
         const data= await response.json();
@@ -61,7 +61,7 @@ const PostsWidget=({userId,isProfile=false})=>{
                     name={`${firstName} ${lastName}`}
                     description={description}
                     location={location}
-                    picturePath={picturePath={}}
+                    picturePath={picturePath}
                     userPicturePath={userPicturePath}
                     likes={likes}
                     comments={comments}

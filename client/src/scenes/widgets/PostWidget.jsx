@@ -5,13 +5,13 @@ import {
     ShareOutlined,
 } from "@mui/icons-material";
 import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
-import FlexBetween from "components/FlexBetween";
-import Friend from "components/Friend";
-import WidgetWrapper from "components/WidgetWrapper";
+import FlexBetween from "../../components/FlexBetween";
+import Friend from "../../components/Friend";
+import WidgetWrapper from "../../components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPost } from "state";
-// this widget is used to demonstrate a single post according to user for example if he clickson a post on home page then this widget perform action and open only that post instead of all posts 
+import { setPost } from "../../state";
+// this widget is used to demonstrate a single post likes and comments post functionality is here
 const PostWidget = ({
     postId,
     postUserId,
@@ -34,6 +34,7 @@ const PostWidget = ({
     const main = palette.neutral.main;
     const primary = palette.primary.main;
 
+    // liking the post functionality
     const patchLike = async () => {
         const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
             method: "PATCH",
@@ -44,6 +45,7 @@ const PostWidget = ({
             body: JSON.stringify({ userId: loggedInUserId }),
         });
         const updatedPost = await response.json();
+        // will update individual post likes and comments
         dispatch(setPost({ post: updatedPost }));
     };
 
@@ -92,6 +94,7 @@ const PostWidget = ({
                     <ShareOutlined />
                 </IconButton>
             </FlexBetween>
+            {/* this will show once comment icon is clicked to see all comments on a post */}
             {isComments && (
                 <Box mt="0.5rem">
                     {comments.map((comment, i) => (
